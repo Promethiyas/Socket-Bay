@@ -1,5 +1,7 @@
 import * as React from 'react'
 import ReactDom from 'react-dom/client'
+import { UserProvider } from './components/UserProvider.tsx'
+import { HomePage } from './page/HomePage.tsx'
 
 const host = document.querySelector('#root')
 if (!host) console.log('Missing react mounting point: #root')
@@ -10,6 +12,8 @@ else {
 
 function App() {
   return <React.StrictMode>
-    <>Hello</>
+    <UserProvider>
+      <HomePage />
+    </UserProvider>
   </React.StrictMode>
 }
