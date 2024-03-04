@@ -1,8 +1,0 @@
-version: '3.9'
-
-services:
-  redis-db:
-    container_name: 'redis-db'
-    image: 'redis:7.2.4-alpine'
-    ports:
-      - '6379:6379'
