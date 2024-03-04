@@ -10,6 +10,6 @@ else {
 
 function App() {
   return <React.StrictMode>
-    <></>
+    <>Hello</>
   </React.StrictMode>
 }
