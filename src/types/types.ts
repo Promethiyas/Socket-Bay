@@ -39,3 +39,16 @@ export type UserContextData = {
   /** Context user injector. */
   setUser: UserSetFunc
 }
+
+export type ProductSizeUnit = 'x-small' | 'small' | 'medium' | 'large' | 'x-large'
+
+export interface Product extends IdentifiedObject {
+  price: number
+  description: string
+  size: ProductSizeUnit
+  color: string
+  isEcoProduct: boolean
+  brand: string,
+  // String: CDN URLs.
+  images: string[]
+}

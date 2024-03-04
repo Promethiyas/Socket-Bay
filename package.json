@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "Voiture",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
