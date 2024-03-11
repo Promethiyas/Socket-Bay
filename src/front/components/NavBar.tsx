@@ -13,21 +13,21 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
-const pages = [ 'Products', 'Pricing', 'Blog' ]
-const settings = [ 'Profile', 'Account', 'Dashboard', 'Logout' ]
+const pages = ['Products', 'Pricing', 'Blog']
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
-export function TopNavBar() {
-  const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null)
-  const [ anchorElUser, setAnchorElUser ] = React.useState<null | HTMLElement>(null)
+export function TopNavBar (): JSX.Element {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget)
   }
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElUser(event.currentTarget)
   }
-  const handleCloseNavMenu = () => setAnchorElNav(null)
-  const handleCloseUserMenu = () => setAnchorElUser(null)
+  const handleCloseNavMenu = (): void => { setAnchorElNav(null) }
+  const handleCloseUserMenu = (): void => { setAnchorElUser(null) }
 
   return (
     <AppBar position="static">

@@ -1,8 +1,13 @@
-version: '3.9'
-
+version: '3'
 services:
-  redis-db:
-    container_name: 'redis-db'
-    image: 'redis:7.2.4-alpine'
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
     ports:
-      - '6379:6379'
+        - 7687:7687
+        - 7474:7474
+    volumes:
+        - data:/data
+
+volumes:
+  data:
