@@ -7,6 +7,7 @@ import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformInterceptor } from './transform.interceptor';
 import { AuthGuard } from './auth.guard';
 import { JwtModule } from '@nestjs/jwt';
+import { BidsModule } from './bids/bids.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     UsersModule,
     AuthModule,
+    BidsModule,
   ],
   controllers: [],
   providers: [
