@@ -18,6 +18,7 @@ export class UsersService {
       saltOrRounds,
     );
     createdUser.id = uuidv4()
+    createdUser.wallet = uuidv4()
     return createdUser.save();
   }
 

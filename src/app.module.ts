@@ -8,6 +8,7 @@ import { TransformInterceptor } from './transform.interceptor';
 import { AuthGuard } from './auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { BidsModule } from './bids/bids.module';
+import { WalletModule } from './wallet/wallet.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { BidsModule } from './bids/bids.module';
     UsersModule,
     AuthModule,
     BidsModule,
+    WalletModule,
   ],
   controllers: [],
   providers: [
