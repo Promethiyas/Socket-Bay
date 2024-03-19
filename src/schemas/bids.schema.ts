@@ -24,6 +24,9 @@ export class Bid {
 
   @Prop()
   user: string;
+
+  @Prop()
+  biding_id: string;
 }
 
 export const BidSchema = SchemaFactory.createForClass(Bid);

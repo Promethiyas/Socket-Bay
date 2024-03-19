@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { BidsModule } from './bids/bids.module';
 import { WalletModule } from './wallet/wallet.module';
+import { BidingModule } from './biding/biding.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { WalletModule } from './wallet/wallet.module';
     AuthModule,
     BidsModule,
     WalletModule,
+    BidingModule,
   ],
   controllers: [],
   providers: [

@@ -14,11 +14,12 @@ export class BidsService {
     const createdBid = new this.BidModel(createBidDto);
     createdBid.id = uuidv4()
     createdBid.user = user.id
+    createdBid.biding_id= uuidv4()
     return createdBid.save();
   }
 
-  async findOneByID(id: any): Promise<BidDocument | undefined> {
-    return await this.BidModel.findOne({ id },'id name description initialprice user',{
+  public async findOneByID(id: string): Promise<BidDocument | undefined> {
+    return await this.BidModel.findOne({ id },'id name description initialprice user biding_id',{
       includeResultMetadata: false
     });
   }

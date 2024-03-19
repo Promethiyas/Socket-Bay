@@ -10,5 +10,6 @@ import { Bid, BidSchema } from 'src/schemas/bids.schema';
   ],
   controllers: [BidsController],
   providers: [BidsService],
+  exports: [BidsService],
 })
 export class BidsModule {}

@@ -11,4 +11,6 @@ export class CreateBidDto {
     initialprice!: number;
 
     imageb64!: string[];
+
+    
 }
