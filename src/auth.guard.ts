@@ -5,6 +5,7 @@ import { NoAuth } from './decorator/public-access.decorator'
 import { AuthService } from './auth/auth.service'
 import { UsersService } from './users/users.service'
 import { ConfigService } from '@nestjs/config'
+import { BidsService } from './bids/bids.service'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -35,8 +36,6 @@ export class AuthGuard implements CanActivate {
 
     if (!token) throw new UnauthorizedException()
     const payload = await this.auth.verifyToken(token)
-
-    console.log(payload)
 
     if (!payload?.sub) throw new UnauthorizedException()
     const user = await this.users.findOneByID(payload.sub)
