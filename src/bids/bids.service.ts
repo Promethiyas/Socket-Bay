@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Bid, BidDocument, BidingEntry } from 'src/schemas/bids.schema';
+import { Bid, BidDocument } from 'src/schemas/bids.schema';
 import { UserDocument } from 'src/schemas/users.schema';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateBidDto } from './dto/create-bid.dto';
@@ -37,13 +37,10 @@ export class BidsService {
   ): Promise<BidDocument> {
     const bid = await this.findOneByID(bidId);
     if (!bid) throw new NotFoundException('No bid match to the given uuid.');
-    
-    let most: number = bid.initialPrice;
-    for (const entry of bid.bidings) {
-      if (entry.amount > most) {
-        most = entry.amount;
-      }
-    }
+
+    const most = bid.bidings
+      .map((b) => b.amount)
+      .reduce((prev, curr) => (curr > prev ? curr : prev), bid.initialPrice);
 
     if (dto.amount <= most) {
       throw new UnauthorizedException(
