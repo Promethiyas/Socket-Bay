@@ -1,9 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Exclude } from 'class-transformer'
 import { UUID } from 'crypto';
-import { HydratedDocument } from 'mongoose';
-import * as mongoose from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
+export type BidingEntry = {
+  ownerId: string
+  amount: number
+}
 
 @Schema()
 export class Bid {
@@ -17,16 +19,16 @@ export class Bid {
   description: string;
 
   @Prop()
-  initialprice: number;
+  initialPrice: number;
 
   @Prop()
-  imageb64: string[];
+  images: string[];
 
   @Prop()
   user: string;
 
   @Prop()
-  biding_id: string;
+  bidings: BidingEntry[]
 }
 
 export const BidSchema = SchemaFactory.createForClass(Bid);

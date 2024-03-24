@@ -1,16 +1,15 @@
-import { IsNotEmpty } from "class-validator";
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateBidDto {
-    @IsNotEmpty()
-    name!: string;
+  @IsNotEmpty()
+  name!: string;
 
-    @IsNotEmpty()
-    description!: string;
+  @IsNotEmpty()
+  description!: string;
 
-    @IsNotEmpty()
-    initialprice!: number;
+  @IsNotEmpty()
+  initialPrice!: number;
 
-    imageb64!: string[];
-
-    
+  @IsArray()
+  images!: string[];
 }
