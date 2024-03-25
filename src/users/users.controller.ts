@@ -1,18 +1,18 @@
 import {
+  Body,
   Controller,
   Get,
-  Post,
-  Body /*, Patch, Param, Delete*/,
-  Req,
   Inject,
+  Post,
   forwardRef,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { AuthService } from '../auth/auth.service';
 import { User } from 'src/decorator/curent-user.decorator';
-import { UserDocument } from 'src/schemas/users.schema';
 import { NoAuth } from 'src/decorator/public-access.decorator';
+import { UserDocument, UserWallet } from 'src/schemas/users.schema';
+import { AuthService } from '../auth/auth.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateWalletDto } from './dto/update-wallet.dto';
+import { UsersService } from './users.service';
 
 @Controller('/')
 export class UsersController {
@@ -42,23 +42,15 @@ export class UsersController {
       email: user.email,
       phone: user.phone,
       address: user.address,
-      age: user.age
-    }
-    
-  }
-  /*
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+      age: user.age,
+    };
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  @Post('/user/wallet')
+  public async postWallet(
+    @Body() dto: UpdateWalletDto,
+    @User() user: UserDocument,
+  ): Promise<UserWallet> {
+    return this.usersService.updateWallet(user, dto);
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
-  }*/
 }

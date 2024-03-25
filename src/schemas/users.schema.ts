@@ -1,9 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Exclude } from 'class-transformer'
+import { Exclude } from 'class-transformer';
 import { UUID } from 'crypto';
 import { HydratedDocument } from 'mongoose';
-import * as mongoose from 'mongoose';
 
+@Schema()
+export class UserWallet {
+  @Prop()
+  balance: number;
+
+  @Prop()
+  currency: string;
+};
 
 @Schema()
 export class User {
@@ -29,8 +36,8 @@ export class User {
   @Prop()
   phone: string;
 
-  @Prop()
-  wallet: string;
+  @Prop({ type: UserWallet })
+  wallet: UserWallet;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,22 +1,46 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Inject,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  forwardRef,
+} from '@nestjs/common';
+import { UserDocument } from 'src/schemas/users.schema';
+import { User } from '../decorator/curent-user.decorator';
 import { BidsService } from './bids.service';
 import { CreateBidDto } from './dto/create-bid.dto';
-import { User } from '../decorator/curent-user.decorator';
-import { UserDocument } from 'src/schemas/users.schema';
+import { BidDocument } from 'src/schemas/bids.schema'
+import { CreateBidingDto } from './dto/create-biding.dto'
 
 @Controller('/bids')
 export class BidsController {
-  constructor(private readonly BidsService: BidsService) {}
+  constructor(
+    @Inject(forwardRef(() => BidsService))
+    private readonly bids: BidsService,
+  ) {}
 
   @Post()
-  async create(@Body() createBidDto: CreateBidDto, @User() user:UserDocument) {
-    return await this.BidsService.create(createBidDto,user);
+  public async create(
+    @Body() dto: CreateBidDto,
+    @User() user: UserDocument,
+  ) {
+    return await this.bids.create(dto, user);
   }
 
   @Get('/:id')
-  async findOneByID(@Param('id',ParseUUIDPipe) id:string) {
-    
-    return await this.BidsService.findOneByID(id);
-    
+  public async findOneByID(@Param('id', ParseUUIDPipe) id: string): Promise<BidDocument> {
+    return this.bids.findOneByID(id);
+  }
+
+  @Post('/:id')
+  public async postBiding(
+    @Param('id', ParseUUIDPipe) id: string,
+    @User() user: UserDocument,
+    @Body() dto: CreateBidingDto
+  ): Promise<BidDocument> {
+    return this.bids.createBiding(id, user, dto);
   }
 }
