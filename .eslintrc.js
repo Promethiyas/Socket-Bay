@@ -27,5 +27,8 @@ module.exports = {
   'plugins': [
     'react'
   ],
-  'rules': {}
+  'rules': {},
+  'exclude': [
+    'mockup',
+  ],
 }

@@ -1,9 +1,16 @@
 import { fakerFR as Faker } from '@faker-js/faker'
 import { randomInt } from 'crypto'
 import Fs from 'node:fs/promises'
+import path from 'node:path'
 
 const MAX_COUNT = 200
-const products = []
+const products = [];
+const categories = ['short sock', 'low sock', 'long sock']
+  .map((category, i) => ({
+    id: i + 1,
+    name: category,
+    representativeImageUrl: Faker.image.url({ height: 512, width: 512 })
+  }))
 
 for (let i = 0; i < MAX_COUNT; i++) {
   products.push({
@@ -14,14 +21,17 @@ for (let i = 0; i < MAX_COUNT; i++) {
     isEcoProduct: (i % 2) == 1,
     images: images(6),
     price: Faker.number.float({ min: 10, max: 1200, fractionDigits: 2 }),
-    size: randomSize()
+    size: randomSize(),
+    title: Faker.commerce.productName(),
+    category: categories[randomInt(categories.length)].id
   })
 }
 
 await Fs.writeFile(
-  './mockup.json',
+  path.resolve(path.join('..', 'mockup.json')),
   JSON.stringify({
-    products
+    products,
+    categories
   }, undefined, 2)
 )
 
