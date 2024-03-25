@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
@@ -9,6 +10,7 @@ import Paper from '@mui/material/Paper'
 
 import { products } from '../../../../mockup.json'
 import { CountdownDeal } from './CountdownDeal'
+import { cssBuilder } from '../../helpers/css'
 
 const END_OFFERT = new Date('2024-12-31T23:59:59')
 
@@ -17,16 +19,23 @@ function getProduct (): typeof products {
 }
 
 export function DealAndOffer (): JSX.Element {
-  const products = getProduct()
+  const navigate = useNavigate();
+  const products = getProduct();
 
   return (
     <Box
       component="section"
-      sx={{
-        p: 2,
-        bgcolor: 'background.default',
-        borderRadius: 2
-      }}
+      sx={
+        cssBuilder()
+        .addBoxShadow()
+        .addBorderRadius('all')
+        .useTheme()
+        .setBgColor()
+        .extra({
+          p: 2,
+        })
+        .done()
+      }
     >
       <Stack
         spacing={2}
@@ -51,7 +60,9 @@ export function DealAndOffer (): JSX.Element {
             alignItems="center"
             gap={1}
           >
-            <Paper elevation={3} sx={{ width: '6rem' }}>
+            <Paper elevation={3} sx={{ width: '6rem', cursor: 'pointer' }}
+              onClick={() => navigate(`/bid/${product.id}`)}
+            >
               <img
                 src={product.images[0]}
                 alt={`Picture of ${product.brand}`}

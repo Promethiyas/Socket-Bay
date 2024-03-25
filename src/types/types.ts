@@ -50,5 +50,12 @@ export interface Product extends IdentifiedObject {
   isEcoProduct: boolean
   brand: string,
   // String: CDN URLs.
-  images: string[]
+  images: string[],
+  title: string,
+  category: number,
+}
+
+export interface Category extends IdentifiedObject {
+  name: string,
+  representativeImageUrl: string
 }

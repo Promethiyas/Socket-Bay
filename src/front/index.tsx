@@ -22,13 +22,13 @@ else {
 const theme = createTheme({
   palette: {
     primary: {
-      main: 'hsl(17, 70, 56%)'
+      main: 'hsl(17 70 56%)'
     },
     secondary: {
-      main: 'hsl(0, 0, 92%)'
+      main: 'hsl(0 0 92%)'
     },
     background: {
-      default: 'hsl(0, 0%, 92%)'
+      default: 'hsl(0 0% 92%)'
     },
     text: {
       secondary: '#FFFFFF'
